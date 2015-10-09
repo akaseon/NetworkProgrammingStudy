@@ -21,16 +21,16 @@ int TCPServerHandleClient( int aClientSock )
     sReceiveLength = read( aClientSock, sBuffer, MAX_BUFFER_SIZE );
     if ( sReceiveLength < 0 )
     {
-        printf( "read Function is failed" );
+        printf( "read Function is failed\n" );
         return -1;
     }
     else
     {
         sBuffer[sReceiveLength] = '\0';
-        printf("Client is sent : %s(Size:%d)", sBuffer, sReceiveLength );
+        printf("Client is sent : %s(Size:%d)\n", sBuffer, sReceiveLength );
         if ( write( aClientSock, sBuffer, sReceiveLength+1 ) < 0 )
         {
-            printf( "write Function is failed" );
+            printf( "write Function is failed\n" );
             return -1;
         }
         else
@@ -55,8 +55,12 @@ int TCPServerServer( short aListenPort )
                             0 );
     if ( sListenSocket < 0 )
     {
-        printf( "socket Function is failed" );
+        printf( "socket Function is failed\n" );
         return -1;
+    }
+    else
+    {
+        /* do nothing */
     }
 
     memset( &sServerAddr, 0x00, sizeof( sServerAddr ) );
@@ -68,14 +72,23 @@ int TCPServerServer( short aListenPort )
                (struct sockaddr*)&sServerAddr,
                sizeof(sServerAddr) ) < 0 )
     {
-        printf( "bind Function is failed" );
+        printf( "bind Function is failed\n" );
         return -1;
     }
+    else
+    {
+        /* do nothing */
+    }
+
 
     if ( listen( sListenSocket, MAX_BACKLOG ) < 0 )
     {
-        printf( "listen Function is failed" );
+        printf( "listen Function is failed\n" );
         return -1;
+    }
+    else
+    {
+        /* do nothing */
     }
 
     while ( 1 )
@@ -88,7 +101,7 @@ int TCPServerServer( short aListenPort )
 
         if ( sClientSocket > 0 )
         {
-            printf( "Client is Connected (IP:%s, Port:%d)",
+            printf( "Client is Connected (IP:%s, Port:%d)\n",
                     inet_ntoa(sClientAddr.sin_addr),
                     ntohs(sClientAddr.sin_port) );
 
@@ -99,7 +112,7 @@ int TCPServerServer( short aListenPort )
         }
         else
         {
-            printf(" Accept Function is failed" );
+            printf(" Accept Function is failed\n" );
         }
     }
 
