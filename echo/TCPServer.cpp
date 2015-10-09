@@ -49,6 +49,7 @@ int TCPServerServer( short aListenPort )
     struct sockaddr_in  sServerAddr;
     struct sockaddr_in  sClientAddr;
     unsigned int        sClientAddrLength = 0;
+    int                 sOptionVal = 0;
 
     sListenSocket = socket( PF_INET, 
                             SOCK_STREAM, 
@@ -57,6 +58,21 @@ int TCPServerServer( short aListenPort )
     {
         printf( "socket Function is failed\n" );
         return -1;
+    }
+    else
+    {
+        /* do nothing */
+    }
+
+    /* REUSEADDR SET */
+    sOptionVal = 1;
+    if ( setsockopt( sListenSocket,
+                     SOL_SOCKET,
+                     SO_REUSEADDR,
+                     (char*)&sOptionVal,
+                     (int)sizeof(sOptionVal) ) < 0 )
+    {
+        printf( "setSockOpt Function is failed\n" );
     }
     else
     {
