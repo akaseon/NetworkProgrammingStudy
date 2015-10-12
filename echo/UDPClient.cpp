@@ -67,7 +67,6 @@ int UDPClient( char     * aIPAddress,
     else
     {
         printf( "sendto function is failed\n" );
-        /* do nothing */
     }
 
     close( sSocket );
