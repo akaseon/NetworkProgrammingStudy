@@ -111,7 +111,7 @@ int main( void )
         if ( TCPClient( IPADDRESS,
                         PORT_NO,
                         sBuffer,
-                    sBufferLength+1 ) == -1 )
+                        sBufferLength+1 ) == -1 )
         {
             break;
         }

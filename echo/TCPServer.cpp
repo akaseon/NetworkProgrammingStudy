@@ -96,7 +96,6 @@ int TCPServerServer( short aListenPort )
         /* do nothing */
     }
 
-
     if ( listen( sListenSocket, MAX_BACKLOG ) < 0 )
     {
         printf( "listen Function is failed\n" );
