@@ -56,6 +56,11 @@ void * handleReadEvent( void * aData )
                 sBuffer[sBufferLength] = '\0';
                 printf("Recv Message : %s\n", sBuffer );
             }
+            else if ( sBufferLength == 0)
+            {
+                printf( "Connection is closed\n" );
+                gLoop = -1;
+            }
             else
             {
                 printf( "read function is failed\n" );

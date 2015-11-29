@@ -142,7 +142,12 @@ int handleClientSockEvent( int               aClientSock,
     char    sBuffer[MAX_BUFFER_SIZE];
 
     sReceiveLength = read( aClientSock, sBuffer, MAX_BUFFER_SIZE );
-    if ( sReceiveLength <= 0 )
+    if ( sReceiveLength == 0 )
+    {
+        printf( "connection is closed\n" );
+        return -1;
+    }
+    else if ( sReceiveLength < 0 )
     {
         printf( "read Function is failed\n" );
         return -1;
